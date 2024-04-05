@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 0 20px;
+  }
+
+  .center-grid {
+    display: grid;
+    place-items: center;
+    height: 20vh;
+    margin: 0 40px;
+  }
+}
