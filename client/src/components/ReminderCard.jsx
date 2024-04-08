@@ -35,7 +35,7 @@ const ReminderCard = ({
   return (
     <div>
       <Card className='w-[230px] h-[150px] rounded-md mx-2 border'>
-        <div onClick={DeleteReminder} className='relative w-fit top-1 right-1'>
+        <div onClick={DeleteReminder} className='flex items-start justify-end px-1 pt-1 cursor-pointer'>
           <Badge color='failure'>Delete</Badge>
         </div>
         <div className='p-4'>

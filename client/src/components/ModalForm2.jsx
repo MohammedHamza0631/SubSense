@@ -56,7 +56,7 @@ function ModalForm2 ({ setReminders }) {
       >
         Create
       </Button>
-      <Modal show={openModal} size='md' onClose={onCloseModal} popup>
+      <Modal dismissible show={openModal} size='md' onClose={onCloseModal} popup>
         <Modal.Header />
         <Modal.Body>
           <form onSubmit={handleSubmit}>
@@ -92,7 +92,7 @@ function ModalForm2 ({ setReminders }) {
                   minDate={new Date()}
                   timeCaption='Time'
                   dateFormat='dd/MM/yyyy h:mm aa'
-                  className='border-2 border-gray-200 rounded-lg w-full px-2 py-1 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent'
+                  className='border-2 border-gray-200 rounded-lg w-full px-2 py-1 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-transparent '
                 />
                 <p className='text-red-500 text-sm'>{timeError}</p>
               </div>

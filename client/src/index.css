@@ -17,4 +17,26 @@
     height: 20vh;
     margin: 0 40px;
   }
+
+  .login,
+  .register {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .form-input {
+    display: block;
+    margin: 20px 7px;
+    width: 95%;
+    padding: 10px 7px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #333;
+  }
+
 }

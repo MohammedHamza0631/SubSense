@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import NavBar from './components/NavBar'
 import LoginPage from './pages/LoginPage'
-import SignupPage from './components/SignupPage'
+import SignupPage from './pages/SignupPage'
 import axios from 'axios'
 import { Spinner } from 'flowbite-react'
 import { useState } from 'react'
@@ -43,7 +43,8 @@ function App () {
           path='/'
           element={
             loading ? (
-              <div className='text-center'>
+              
+              <div className='.ibelick-bg text-center'>
                 <Spinner
                   color='info'
                   aria-label='Extra large Center-aligned Info spinner example'

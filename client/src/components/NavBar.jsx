@@ -4,7 +4,7 @@ import ModalForm2 from './ModalForm2'
 
 const NavBar = ({ setReminders }) => {
   return (
-    <div className='flex items-center justify-around px-4 py-2 md:px-6 md:py-4 lg:px-8 lg:py-6'>
+    <div className='.ibelick-bg flex items-center justify-around px-4 py-2 md:px-6 md:py-4 lg:px-8 lg:py-6'>
       <h1 className='text-lg md:text-xl font-extrabold'>
         <Link to='/'>SubSense</Link>
       </h1>
