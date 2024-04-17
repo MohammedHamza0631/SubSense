@@ -19,7 +19,12 @@ const ReminderCard = ({
     setLoading(true)
     try {
       await axios.delete(
-        `https://doctorxeno.pythonanywhere.com/api/reminder/${id}/`
+        `https://doctorxeno.pythonanywhere.com/api/reminder/${id}/`,
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('authToken')}`
+          }
+        }
       )
       setIsDeleted(true) // Hide the card after successful deletion
       handleDelete(id)
@@ -34,8 +39,11 @@ const ReminderCard = ({
   }
   return (
     <div>
-      <Card className='w-[230px] h-[150px] rounded-md mx-2 border'>
-        <div onClick={DeleteReminder} className='flex items-start justify-end px-1 pt-1 cursor-pointer'>
+      <Card className='w-[230px] h-[150px] rounded-xl mx-2 border'>
+        <div
+          onClick={DeleteReminder}
+          className='flex items-start justify-end px-1 pt-1 cursor-pointer'
+        >
           <Badge color='failure'>Delete</Badge>
         </div>
         <div className='p-4'>

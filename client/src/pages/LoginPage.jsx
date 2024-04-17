@@ -1,18 +1,69 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Button } from 'flowbite-react'
+import toast from 'react-hot-toast'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-
-const LoginPage = () => {
+const LoginPage = ({ setUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
   const cursorRef = useRef(null)
-
   useEffect(() => {
     cursorRef.current.focus()
   }, [])
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    try {
+      const response = await axios.post(
+        'https://doctorxeno.pythonanywhere.com/auth/login/',
+        {
+          username,
+          password
+        }
+      )
+
+      if (response.status === 200) {
+        const token = response.data.data.token
+
+        localStorage.setItem('authToken', token)
+        toast.success('Login successful!', {
+          style: {
+            background: '#333',
+            color: '#fff'
+          }
+        })
+        setUser(token)
+        // Redirect to a protected page
+        navigate('/')
+      } else {
+        throw new Error('Login Failed - Check your credentials')
+      }
+    } catch (error) {
+      setError(error)
+      if (error.response && error.response.status === 404) {
+        toast.error('Invalid username or password', {
+          style: {
+            background: '#333',
+            color: '#fff'
+          }
+        })
+      } else {
+        toast.error('An error occurred. Please try again.', {
+          style: {
+            background: '#333',
+            color: '#fff'
+          }
+        })
+      }
+    }
+  }
+
   return (
     <div>
-      <form className='login'>
+      <form className='login' onSubmit={handleSubmit}>
         <h1 className='text-center mb-4 font-bold'>Login</h1>
 
         <input
@@ -32,8 +83,11 @@ const LoginPage = () => {
           required
           className='form-input'
         />
-        <div className='flex items-center justify-center rounded-lg'><Button className='text-center' type='submit' color="dark">Login</Button></div>
-        
+        <div className='flex items-center justify-center rounded-lg'>
+          <Button className='text-center' type='submit' color='dark'>
+            Login
+          </Button>
+        </div>
       </form>
     </div>
   )

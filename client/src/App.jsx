@@ -10,12 +10,18 @@ import { useState } from 'react'
 function App () {
   const [reminders, setReminders] = useState([])
   const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(localStorage.getItem('authToken') || '')
 
   useEffect(() => {
     const fetchReminders = async () => {
       try {
         const response = await axios.get(
-          'https://doctorxeno.pythonanywhere.com/api/reminder/'
+          'https://doctorxeno.pythonanywhere.com/api/reminder/',
+          {
+            headers: {
+              Authorization: `Token ${user}`
+            }
+          }
         )
         setReminders(response.data)
       } catch (error) {
@@ -35,15 +41,19 @@ function App () {
     setLoading(false)
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('authToken')
+    setUser('')
+  }
+
   return (
     <>
-      <NavBar setReminders={setReminders} />
+      <NavBar setReminders={setReminders} user={user} setUser={setUser} />
       <Routes>
         <Route
           path='/'
           element={
             loading ? (
-              
               <div className='.ibelick-bg text-center'>
                 <Spinner
                   color='info'
@@ -56,11 +66,12 @@ function App () {
                 reminders={reminders}
                 handleReminderDelete={handleReminderDelete}
                 setLoading={setLoading}
+                user={user}
               />
             )
           }
         />
-        <Route path='/login' element={<LoginPage />} />
+        <Route path='/login' element={<LoginPage setUser={setUser} />} />
         <Route path='/signup' element={<SignupPage />} />
       </Routes>
     </>

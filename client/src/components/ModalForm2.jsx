@@ -24,7 +24,12 @@ function ModalForm2 ({ setReminders }) {
       setTimeError(null)
       const response = await axios.post(
         'https://doctorxeno.pythonanywhere.com/api/reminder/',
-        formattedData
+        formattedData,
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('authToken')}`
+          }
+        }
       )
 
       setReminders(prevState => [...prevState, response.data])
@@ -56,7 +61,13 @@ function ModalForm2 ({ setReminders }) {
       >
         Create
       </Button>
-      <Modal dismissible show={openModal} size='md' onClose={onCloseModal} popup>
+      <Modal
+        dismissible
+        show={openModal}
+        size='md'
+        onClose={onCloseModal}
+        popup
+      >
         <Modal.Header />
         <Modal.Body>
           <form onSubmit={handleSubmit}>

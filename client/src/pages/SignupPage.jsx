@@ -1,18 +1,51 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Button } from 'flowbite-react'
+import axios from 'axios'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const SignupPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
   const cursorRef = useRef(null)
 
   useEffect(() => {
     cursorRef.current.focus()
   }, [])
 
+  const handleSubmit = async e => {
+    e.preventDefault()
+    try {
+      const response = await axios.post(
+        'https://doctorxeno.pythonanywhere.com/auth/signup/',
+        {
+          username,
+          password
+        }
+      )
+
+      if (response.status === 201) {
+        toast.success('You are now Registered. Please log in.', {
+          style: {
+            background: '#333',
+            color: '#fff'
+          }
+        })
+        navigate('/login')
+      } else {
+        throw new Error('Registration Failed')
+      }
+    } catch (error) {
+      setError(error)
+      toast.error(error.message)
+    }
+  }
+
   return (
     <div>
-      <form className='register'>
+      <form className='register' onSubmit={handleSubmit}>
         <h1 className='text-center mb-4 font-bold'>SignUp</h1>
 
         <input
