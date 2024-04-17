@@ -16,11 +16,11 @@ const ReminderCard = ({
   const [isDeleted, setIsDeleted] = useState(false)
 
   const DeleteReminder = async () => {
-    console.log(`/api/reminder/${id}/`)
+    
     setLoading(true)
     try {
       await axios.delete(
-        `/api/reminder/${id}/`,
+        `https://doctorxeno.pythonanywhere.com/api/reminder/${id}/`,
         {
           headers: {
             Authorization: `Token ${localStorage.getItem('authToken')}`

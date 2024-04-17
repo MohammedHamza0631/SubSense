@@ -16,7 +16,7 @@ function App () {
     const fetchReminders = async () => {
       try {
         const response = await axios.get(
-          '/api/reminder/',
+          'https://doctorxeno.pythonanywhere.com/api/reminder/',
           {
             headers: {
               Authorization: `Token ${user}`

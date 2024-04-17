@@ -23,7 +23,7 @@ function ModalForm2 ({ setReminders }) {
     try {
       setTimeError(null)
       const response = await axios.post(
-        '/api/reminder/',
+        'https://doctorxeno.pythonanywhere.com/api/reminder/',
         formattedData,
         {
           headers: {

@@ -17,7 +17,7 @@ const LoginPage = ({ setUser, setReminders, setLoading }) => {
   const fetchReminders = async () => {
     setLoading(true)
     try {
-      const response = await axios.get('/api/reminder/', {
+      const response = await axios.get('https://doctorxeno.pythonanywhere.com/api/reminder/', {
         headers: {
           Authorization: `Token ${localStorage.getItem('authToken')}`
         }
@@ -33,7 +33,7 @@ const LoginPage = ({ setUser, setReminders, setLoading }) => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const response = await axios.post('/auth/login/', {
+      const response = await axios.post('https://doctorxeno.pythonanywhere.com/auth/login/', {
         username,
         password
       })

@@ -18,7 +18,7 @@ const SignupPage = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const response = await axios.post('/auth/signup/', {
+      const response = await axios.post('https://doctorxeno.pythonanywhere.com/auth/signup/', {
         username,
         password
       })
