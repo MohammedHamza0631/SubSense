@@ -16,7 +16,7 @@ function App () {
     const fetchReminders = async () => {
       try {
         const response = await axios.get(
-          'https://doctorxeno.pythonanywhere.com/api/reminder/',
+          '/api/reminder/',
           {
             headers: {
               Authorization: `Token ${user}`
@@ -39,11 +39,6 @@ function App () {
       prevState.filter(reminder => reminder.id !== reminderId)
     )
     setLoading(false)
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken')
-    setUser('')
   }
 
   return (
@@ -71,7 +66,7 @@ function App () {
             )
           }
         />
-        <Route path='/login' element={<LoginPage setUser={setUser} />} />
+        <Route path='/login' element={<LoginPage setUser={setUser} setReminders={setReminders} setLoading={setLoading} />} />
         <Route path='/signup' element={<SignupPage />} />
       </Routes>
     </>

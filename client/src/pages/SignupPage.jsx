@@ -18,13 +18,10 @@ const SignupPage = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const response = await axios.post(
-        'https://doctorxeno.pythonanywhere.com/auth/signup/',
-        {
-          username,
-          password
-        }
-      )
+      const response = await axios.post('/auth/signup/', {
+        username,
+        password
+      })
 
       if (response.status === 201) {
         toast.success('You are now Registered. Please log in.', {
@@ -39,7 +36,21 @@ const SignupPage = () => {
       }
     } catch (error) {
       setError(error)
-      toast.error(error.message)
+      if (error.response && error.response.status === 422) {
+        toast.error('Username taken. Please try again', {
+          style: {
+            background: '#333',
+            color: '#fff'
+          }
+        })
+      } else {
+        toast.error('Registration Failed', {
+          style: {
+            background: '#333',
+            color: '#fff'
+          }
+        })
+      }
     }
   }
 

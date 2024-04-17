@@ -9,6 +9,8 @@ const NavBar = ({ setReminders, user, setUser }) => {
   const handleLogout = () => {
     localStorage.removeItem('authToken')
     setUser('')
+    setReminders([])
+    
     navigate('/')
   }
   return (

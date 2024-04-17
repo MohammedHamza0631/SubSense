@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Card, Badge, Button } from 'flowbite-react'
 import Countdown from 'react-countdown'
 import axios from 'axios'
+import {MdDelete} from 'react-icons/md'
 
 const Completionist = () => <span className='text-red-600'>Time's up!</span>
 const ReminderCard = ({
@@ -15,11 +16,11 @@ const ReminderCard = ({
   const [isDeleted, setIsDeleted] = useState(false)
 
   const DeleteReminder = async () => {
-    console.log(`https://doctorxeno.pythonanywhere.com/api/reminder/${id}/`)
+    console.log(`/api/reminder/${id}/`)
     setLoading(true)
     try {
       await axios.delete(
-        `https://doctorxeno.pythonanywhere.com/api/reminder/${id}/`,
+        `/api/reminder/${id}/`,
         {
           headers: {
             Authorization: `Token ${localStorage.getItem('authToken')}`
@@ -38,13 +39,13 @@ const ReminderCard = ({
     return null
   }
   return (
-    <div>
-      <Card className='w-[230px] h-[150px] rounded-xl mx-2 border'>
+    <div className=' w-full h-full'>
+      <Card className=' rounded-2xl mx-2 border relative'>
         <div
           onClick={DeleteReminder}
           className='flex items-start justify-end px-1 pt-1 cursor-pointer'
         >
-          <Badge color='failure'>Delete</Badge>
+          <MdDelete className='absolute text-xl hover:text-2xl hover:text-red-600 transition-all'></MdDelete>
         </div>
         <div className='p-4'>
           <h1 className='text-lg text-center font-semibold'>

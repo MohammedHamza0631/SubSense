@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const LoginPage = ({ setUser }) => {
+const LoginPage = ({ setUser, setReminders, setLoading }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -14,16 +14,29 @@ const LoginPage = ({ setUser }) => {
     cursorRef.current.focus()
   }, [])
 
+  const fetchReminders = async () => {
+    setLoading(true)
+    try {
+      const response = await axios.get('/api/reminder/', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('authToken')}`
+        }
+      })
+      setReminders(response.data)
+    } catch (error) {
+      console.error('Error fetching reminders:', error)
+      // Handle the error appropriately (e.g., display an error message)
+    } finally {
+      setLoading(false)
+    }
+  }
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const response = await axios.post(
-        'https://doctorxeno.pythonanywhere.com/auth/login/',
-        {
-          username,
-          password
-        }
-      )
+      const response = await axios.post('/auth/login/', {
+        username,
+        password
+      })
 
       if (response.status === 200) {
         const token = response.data.data.token
@@ -36,6 +49,7 @@ const LoginPage = ({ setUser }) => {
           }
         })
         setUser(token)
+        fetchReminders()
         // Redirect to a protected page
         navigate('/')
       } else {

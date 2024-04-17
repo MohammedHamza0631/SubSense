@@ -29,7 +29,7 @@ const Home = ({ reminders, user, handleReminderDelete, setLoading }) => {
       <>
         {/* // Display the reminders if there are any */}
         {reminders.length > 0 ? (
-          <div className='mx-2 sm:mx-4 md:mx-8 lg:mx-12 my-4 sm:my-6 md:my-8 lg:my-10 center-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8'>
+          <div className='mx-2 sm:mx-4 md:mx-8 lg:mx-12 my-4 sm:my-6 md:my-8 lg:my-10 center-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-36'>
             {reminders.map(reminder => (
               <ReminderCard
                 key={reminder.id}
