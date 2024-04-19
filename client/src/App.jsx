@@ -49,7 +49,7 @@ function App () {
           path='/'
           element={
             loading ? (
-              <div className='.ibelick-bg text-center'>
+              <div className='text-center'>
                 <Spinner
                   color='info'
                   aria-label='Extra large Center-aligned Info spinner example'
@@ -66,7 +66,16 @@ function App () {
             )
           }
         />
-        <Route path='/login' element={<LoginPage setUser={setUser} setReminders={setReminders} setLoading={setLoading} />} />
+        <Route
+          path='/login'
+          element={
+            <LoginPage
+              setUser={setUser}
+              setReminders={setReminders}
+              setLoading={setLoading}
+            />
+          }
+        />
         <Route path='/signup' element={<SignupPage />} />
       </Routes>
     </>

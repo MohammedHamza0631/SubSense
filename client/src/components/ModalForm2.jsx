@@ -11,7 +11,8 @@ function ModalForm2 ({ setReminders }) {
   const [title, setTitle] = useState('')
   const [endDate, setEndDate] = useState(null)
   const [timeError, setTimeError] = useState(null)
-  const handleSubmit = async event => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     const formattedData = {
@@ -62,7 +63,7 @@ function ModalForm2 ({ setReminders }) {
         Create
       </Button>
       <Modal
-        dismissible
+        dismissible={true}
         show={openModal}
         size='md'
         onClose={onCloseModal}
