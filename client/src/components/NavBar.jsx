@@ -74,30 +74,8 @@ const NavBar = ({ setReminders, user, setUser }) => {
             </Link>
           </>
         )}
-        {/* <Link to='/login' className='text-sm md:text-md font-semibold'>
-          Login
-        </Link>
-        <Link to='/signup' className='text-sm md:text-md font-semibold'>
-          SignUp
-        </Link>
-        <ModalForm2 setReminders={setReminders} /> */}
       </div>
     </div>
-    // <div className='flex items-center justify-center gap-80 px-6 md:px-[200px] py-4 m-10'>
-    //   <h1 className='text-lg md:text-xl font-extrabold'>
-    //     <Link to='/'>SubSense</Link>
-    //   </h1>
-    //   <div className='flex items-center justify-center space-x-2 md:space-x-4'>
-    //     {/* <ModalForm2 /> */}
-    //     <Link to='/login' className='text-md md:text-md font-semibold'>
-    //       Login
-    //     </Link>
-    //     <Link to='/signup' className='text-md md:text-md font-semibold'>
-    //       SignUp
-    //     </Link>
-    //     <ModalForm2 setReminders={setReminders} />
-    //   </div>
-    // </div>
   )
 }
 
